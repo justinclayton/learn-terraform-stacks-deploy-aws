@@ -13,7 +13,7 @@ store "varset" "aws_auth" {
 deployment "development" {
   inputs = {
     regions        = ["us-east-2"]
-    role_arn       = store.varset.aws_auth.tfc_aws_run_role_arn
+    role_arn       = store.varset.aws_auth.stable.tfc_aws_run_role_arn
     identity_token = identity_token.aws.jwt
     default_tags = {
       Stack       = "learn-stacks-deploy-aws",
@@ -25,7 +25,7 @@ deployment "development" {
 deployment "production" {
   inputs = {
     regions        = ["us-east-2", "us-west-2"]
-    role_arn       = store.varset.aws_auth.tfc_aws_run_role_arn
+    role_arn       = store.varset.aws_auth.stable.tfc_aws_run_role_arn
     identity_token = identity_token.aws.jwt
     default_tags = {
       Stack       = "learn-stacks-deploy-aws",
