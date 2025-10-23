@@ -7,7 +7,7 @@ identity_token "aws" {
 
 store "varset" "aws_auth" {
   category = "terraform"
-  name     = "jctest-stacks"
+  name     = "hc-justin-clayton-varset"
 }
 
 deployment "development" {
