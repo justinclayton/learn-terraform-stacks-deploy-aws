@@ -5,10 +5,15 @@ identity_token "aws" {
   audience = ["aws.workload.identity"]
 }
 
+store "varset" "aws_auth" {
+  category = "terraform"
+  id       = "hc-justin-clayton-varset"
+}
+
 deployment "development" {
   inputs = {
-    regions        = ["us-east-1"]
-    role_arn       = "<YOUR_ROLE_ARN>"
+    regions        = ["us-east-2"]
+    role_arn       = store.varset.aws_auth.tfc_aws_run_role_arn
     identity_token = identity_token.aws.jwt
     default_tags = {
       Stack       = "learn-stacks-deploy-aws",
@@ -19,8 +24,8 @@ deployment "development" {
 
 deployment "production" {
   inputs = {
-    regions        = ["us-east-1", "us-west-1"]
-    role_arn       = "<YOUR_ROLE_ARN>"
+    regions        = ["us-east-2", "us-west-2"]
+    role_arn       = store.varset.aws_auth.tfc_aws_run_role_arn
     identity_token = identity_token.aws.jwt
     default_tags = {
       Stack       = "learn-stacks-deploy-aws",
