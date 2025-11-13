@@ -6,7 +6,7 @@ identity_token "aws" {
 }
 
 store "varset" "aws_auth" {
-  category = "terraform"
+  category = "env"
   name     = "hc-justin-clayton-varset"
 }
 
@@ -14,7 +14,7 @@ deployment "development" {
   destroy = true
   inputs = {
     regions        = ["us-east-2"]
-    role_arn       = store.varset.aws_auth.stable.tfc_aws_run_role_arn
+    role_arn       = store.varset.aws_auth.stable.TFC_AWS_RUN_ROLE_ARN
     identity_token = identity_token.aws.jwt
     default_tags = {
       Stack       = "learn-stacks-deploy-aws",
@@ -27,7 +27,7 @@ deployment "production" {
   destroy = true
   inputs = {
     regions        = ["us-east-2", "us-west-2"]
-    role_arn       = store.varset.aws_auth.stable.tfc_aws_run_role_arn
+    role_arn       = store.varset.aws_auth.stable.TFC_AWS_RUN_ROLE_ARN
     identity_token = identity_token.aws.jwt
     default_tags = {
       Stack       = "learn-stacks-deploy-aws",
